@@ -1,0 +1,363 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="295dp"
+            android:height="295dp"
+            android:viewportWidth="295"
+            android:viewportHeight="295">
+            <group android:name="mirrors">
+                <path
+                    android:name="path"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 80.95 184.19 L 80.95 195.24 L 152.38 195.24 L 152.38 147.62 L 107.07 147.62 L 80.95 184.19 Z M 142.86 157.14 L 142.86 185.71 L 91.57 185.71 L 111.98 157.14 L 142.86 157.14 Z" />
+                <path
+                    android:name="path_1"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 157.14 147.62 L 157.14 195.24 L 228.57 195.24 L 228.57 184.19 L 202.45 147.62 L 157.14 147.62 Z M 166.67 185.71 L 166.67 157.14 L 197.55 157.14 L 217.96 185.71 L 166.67 185.71 Z" />
+            </group>
+            <path
+                android:name="car"
+                android:fillColor="#FFFFFF"
+                android:pathData="M 277.35 185.86 L 258.32 181.1 C 253.52 179.89 250.75 178.01 246.74 173.43 L 222.81 139.93 C 216.67 132.08 209.64 128.58 200.01 128.58 L 109.53 128.58 C 99.9 128.58 92.86 132.08 86.61 140.1 L 63.08 173.08 C 58.8 178 55.54 180.24 51.6 181.03 L 22.84 185.83 C 9.18 188.66 0 200.1 0 214.29 L 0 247.62 C 0 257.94 8.72 266.67 19.05 266.67 L 33.72 266.67 C 36.04 282.79 49.91 295.24 66.67 295.24 L 295.24 295.24 L 295.24 285.72 L 251.85 285.72 C 256.96 280.71 260.45 274.08 261.52 266.67 L 280.95 266.67 C 292.76 266.67 295.24 258.9 295.24 252.38 L 295.24 209.52 C 295.24 197.72 285.61 187.25 277.35 185.86 Z M 66.67 285.71 C 53.54 285.71 42.86 275.03 42.86 261.9 C 42.86 248.77 53.54 238.09 66.67 238.09 C 79.8 238.09 90.48 248.77 90.48 261.9 C 90.48 275.03 79.8 285.71 66.67 285.71 Z M 89.95 285.71 C 95.06 280.7 98.55 274.07 99.62 266.66 L 195.62 266.66 C 196.69 274.07 200.17 280.7 205.29 285.71 L 89.95 285.71 Z M 228.57 285.71 C 215.44 285.71 204.76 275.03 204.76 261.9 C 204.76 248.77 215.44 238.09 228.57 238.09 C 241.7 238.09 252.38 248.77 252.38 261.9 C 252.38 275.03 241.7 285.71 228.57 285.71 Z M 285.71 252.38 L 285.71 252.38 C 285.71 256.47 285.04 257.14 280.95 257.14 L 261.52 257.14 C 259.2 241.02 245.33 228.57 228.57 228.57 C 211.81 228.57 197.94 241.02 195.62 257.14 L 99.62 257.14 C 97.3 241.02 83.43 228.57 66.67 228.57 C 49.91 228.57 36.04 241.02 33.72 257.14 L 19.05 257.14 C 13.98 257.14 9.53 252.69 9.53 247.62 L 9.53 223.81 L 19.05 223.81 L 19.05 233.33 L 28.57 233.33 L 28.57 223.81 C 28.57 217.67 25.19 214.29 19.05 214.29 L 9.52 214.29 C 9.52 202.51 17.4 196.68 24.59 195.18 L 53.31 190.39 C 59.52 189.14 64.59 185.83 70.53 178.97 L 94.22 145.8 C 98.6 140.19 102.75 138.11 109.52 138.11 L 200 138.11 C 206.76 138.11 210.91 140.2 215.17 145.64 L 239.26 179.33 C 243.93 184.7 248.36 188.42 255.98 190.34 L 275.38 195.18 C 279.45 195.88 285.71 202.35 285.71 209.54 L 285.71 252.38 Z" />
+            <path
+                android:name="car_handle"
+                android:fillColor="#FFFFFF"
+                android:pathData="M 138.1 204.76 L 152.39 204.76 L 152.39 214.28 L 138.1 214.28 Z" />
+            <group android:name="wheels">
+                <path
+                    android:name="path_2"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 66.67 247.62 C 58.79 247.62 52.38 254.03 52.38 261.91 C 52.38 269.79 58.79 276.2 66.67 276.2 C 74.55 276.2 80.96 269.79 80.96 261.91 C 80.95 254.03 74.54 247.62 66.67 247.62 Z M 66.67 266.67 C 64.05 266.67 61.91 264.54 61.91 261.91 C 61.91 259.28 64.05 257.15 66.67 257.15 C 69.29 257.15 71.43 259.28 71.43 261.91 C 71.43 264.53 69.29 266.67 66.67 266.67 Z" />
+                <path
+                    android:name="path_3"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 228.57 247.62 C 220.69 247.62 214.28 254.03 214.28 261.91 C 214.28 269.79 220.69 276.2 228.57 276.2 C 236.45 276.2 242.86 269.79 242.86 261.91 C 242.86 254.03 236.45 247.62 228.57 247.62 Z M 228.57 266.67 C 225.95 266.67 223.81 264.54 223.81 261.91 C 223.81 259.28 225.95 257.15 228.57 257.15 C 231.19 257.15 233.33 259.28 233.33 261.91 C 233.33 264.53 231.2 266.67 228.57 266.67 Z" />
+            </group>
+            <group android:name="drops">
+                <path
+                    android:name="blink_drops_2"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 61.9 47.62 L 71.42 47.62 L 71.42 119.05 L 61.9 119.05 Z" />
+                <path
+                    android:name="blink_drops_16"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 61.9 128.57 L 71.42 128.57 L 71.42 138.09 L 61.9 138.09 Z" />
+                <path
+                    android:name="blink_drops_10"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 61.9 147.62 L 71.42 147.62 L 71.42 157.14 L 61.9 157.14 Z" />
+                <path
+                    android:name="blink_drops_3"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 28.57 47.62 L 38.09 47.62 L 38.09 138.1 L 28.57 138.1 Z" />
+                <path
+                    android:name="blink_drops_12"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 28.57 147.62 L 38.09 147.62 L 38.09 157.14 L 28.57 157.14 Z" />
+                <path
+                    android:name="blink_drops_13"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 28.57 166.67 L 38.09 166.67 L 38.09 176.19 L 28.57 176.19 Z" />
+                <path
+                    android:name="blink_drops"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 23.81 285.71 L 33.33 285.71 L 33.33 295.23 L 23.81 295.23 Z"
+                    android:strokeLineCap="round" />
+                <path
+                    android:name="blink_drops_17"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 0 171.43 L 9.52 171.43 L 9.52 180.95 L 0 180.95 Z" />
+                <path
+                    android:name="blink_drops_1"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 4.76 285.71 L 14.28 285.71 L 14.28 295.23 L 4.76 295.23 Z" />
+                <path
+                    android:name="blink_drops_6"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 95.24 47.62 L 104.76 47.62 L 104.76 119.05 L 95.24 119.05 Z" />
+                <path
+                    android:name="blink_drops_19"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 128.57 47.62 L 138.09 47.62 L 138.09 57.14 L 128.57 57.14 Z" />
+                <path
+                    android:name="blink_drops_7"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 128.57 66.67 L 138.09 66.67 L 138.09 119.05 L 128.57 119.05 Z" />
+                <path
+                    android:name="blink_drops_8"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 161.9 47.62 L 171.42 47.62 L 171.42 100 L 161.9 100 Z" />
+                <path
+                    android:name="blink_drops_15"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 161.9 109.52 L 171.42 109.52 L 171.42 119.04 L 161.9 119.04 Z" />
+                <path
+                    android:name="blink_drops_9"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 195.24 47.62 L 204.76 47.62 L 204.76 119.05 L 195.24 119.05 Z" />
+                <path
+                    android:name="blink_drops_4"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 228.57 47.62 L 238.09 47.62 L 238.09 138.1 L 228.57 138.1 Z" />
+                <path
+                    android:name="blink_drops_5"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 261.9 47.62 L 271.42 47.62 L 271.42 138.1 L 261.9 138.1 Z" />
+                <path
+                    android:name="blink_drops_11"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 261.9 147.62 L 271.42 147.62 L 271.42 157.14 L 261.9 157.14 Z" />
+                <path
+                    android:name="blink_drops_14"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 261.9 166.67 L 271.42 166.67 L 271.42 176.19 L 261.9 176.19 Z" />
+                <path
+                    android:name="blink_drops_18"
+                    android:fillColor="#FFFFFF"
+                    android:pathData="M 285.71 171.43 L 295.23 171.43 L 295.23 180.95 L 285.71 180.95 Z" />
+            </group>
+            <path
+                android:name="shower"
+                android:fillColor="#FFFFFF"
+                android:pathData="M 273.81 14.29 L 214.29 14.29 L 214.29 0 L 204.77 0 L 204.77 14.29 L 90.48 14.29 L 90.48 0 L 80.96 0 L 80.96 14.29 L 21.43 14.29 C 9.61 14.29 0 23.9 0 35.71 L 0 42.85 L 295.24 42.85 L 295.24 35.71 C 295.24 23.9 285.62 14.29 273.81 14.29 Z M 10.52 33.33 C 12.36 28.57 16.56 23.81 21.43 23.81 L 273.81 23.81 C 278.68 23.81 282.88 28.57 284.72 33.33 L 10.52 33.33 Z" />
+        </vector>
+    </aapt:attr>
+    <target android:name="blink_drops_2">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_10">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="54"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_16">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="38"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_3">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_12">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="8"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_13">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="38"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="48"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_17">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="28"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_1">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_6">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="46"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_19">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="70"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_7">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="111"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_8">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="82"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_15">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="108"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_9">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="54"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_4">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="20"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_5">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="77"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_11">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="57"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_14">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="79"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+    <target android:name="blink_drops_18">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="800"
+                android:interpolator="@android:interpolator/fast_out_slow_in"
+                android:propertyName="fillColor"
+                android:startOffset="90"
+                android:valueFrom="#008290"
+                android:valueTo="#ffffff"
+                android:valueType="colorType" />
+        </aapt:attr>
+    </target>
+</animated-vector>
