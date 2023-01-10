@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface MainRepository {
 
-    suspend fun generateRandomPoints(amount: Int) : Flow<CommonStates>
+    suspend fun generateRandomPoints(amount: Int): Flow<CommonStates>
 }

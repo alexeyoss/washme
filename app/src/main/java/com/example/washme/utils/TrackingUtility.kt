@@ -2,7 +2,7 @@ package com.example.washme.utils
 
 import android.Manifest
 import android.content.Context
-import pub.devrel.easypermissions.EasyPermissions
+import com.vmadalin.easypermissions.EasyPermissions
 
 object TrackingUtility {
 

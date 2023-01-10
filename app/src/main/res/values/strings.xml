@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">WashMe</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--Map fragment -->
+    <string name="perm_rational_text">You need to accept location permissions to determinate your location</string>
+    <string name="location_icon_text">Location icon</string>
 </resources>

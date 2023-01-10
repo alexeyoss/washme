@@ -16,14 +16,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WashMe"
         tools:targetApi="31">
+
         <activity
             android:name=".presentation.MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <provider
@@ -32,16 +34,13 @@
             android:exported="false"
             tools:node="merge"
             tools:replace="android:authorities">
-
             <meta-data
                 android:name="com.example.washme.initializer.TimberInitializer"
                 android:value="androidx.startup" />
-
             <meta-data
                 android:name="com.example.washme.initializer.YandexMapInitializer"
                 android:value="androidx.startup" />
         </provider>
-
     </application>
 
 </manifest>

@@ -1,8 +1,14 @@
 package com.example.washme.data
 
+import com.example.washme.utils.ConstHolder.DEFAULT_MAX_LATITUDE
+import com.example.washme.utils.ConstHolder.DEFAULT_MAX_LONGITUDE
+import com.example.washme.utils.ConstHolder.DEFAULT_MIN_LATITUDE
+import com.example.washme.utils.ConstHolder.DEFAULT_MIN_LONGITUDE
 import com.yandex.mapkit.geometry.Point
 import timber.log.Timber
 import kotlin.random.Random
+
+/** [MapObjectsFactory] randomly provided the fake car wash points on the map */
 
 class MapObjectsFactory {
     fun generateRandomPoints(amount: Int): HashSet<Point> {
@@ -16,17 +22,10 @@ class MapObjectsFactory {
 
 fun Point.factory(): Point = Point(getRandomLatitude(), getRandomLongitude())
 
-
-private const val DEFAULT_MAX_LATITUDE = 50f
-private const val DEFAULT_MIN_LATITUDE = 0f
-private const val DEFAULT_MAX_LONGITUDE = 50f
-private const val DEFAULT_MIN_LONGITUDE = 0f
-
-
 private fun getRandomLatitude(
     min: Float = DEFAULT_MIN_LATITUDE, max: Float = DEFAULT_MAX_LATITUDE
 ): Double {
-    require(min < max) { Timber.i("Invalid range OF LATITUDE [$min, $max]") }
+    require(min < max) { Timber.i("Invalid range of LATITUDE [$min, $max]") }
     return min + Random.nextDouble() * (max - min)
 }
 

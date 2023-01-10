@@ -60,12 +60,12 @@ dependencies {
     androidTestImplementation "androidx.test.ext:junit:1.1.4"
     androidTestImplementation "androidx.test.espresso:espresso-core:3.5.0"
 
-    // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    // OkHttp client + logging
-    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
+//    // Retrofit
+//    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+//    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+//    // OkHttp client + logging
+//    implementation "com.squareup.okhttp3:okhttp:$okhttp3_version"
+//    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3_version"
     //  Picasso
     implementation "com.squareup.picasso:picasso:2.8"
     // Coroutines
@@ -96,5 +96,5 @@ dependencies {
     // Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
     // Easy permissions
-    implementation "pub.devrel:easypermissions:$easyPerm_version"
+    implementation "com.vmadalin:easypermissions-ktx:$easyPerm_version"
 }
