@@ -3,8 +3,8 @@ package com.example.washme.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.washme.data.MainRepositoryImpl
 import com.example.washme.di.CoroutinesModule
+import com.example.washme.domain.GenerateAndSavePointUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,7 +18,7 @@ import javax.inject.Inject
 class MapFragmentViewModelImpl
 @Inject constructor(
     @CoroutinesModule.IoDispatcher private val ioDispatcher: CoroutineDispatcher,
-    private val mainRepository: MainRepositoryImpl
+    private val generateAndSavePointUseCase: GenerateAndSavePointUseCase
 ) : ViewModel(), MapFragmentViewModel {
     // TODO save the map state while view rendering
 
@@ -27,7 +27,7 @@ class MapFragmentViewModelImpl
 
     override fun getStartRandomPoints(amount: Int) {
         viewModelScope.launch(ioDispatcher) {
-            mainRepository.generateRandomPoints(amount).onEach { commonState ->
+            generateAndSavePointUseCase.invoke(amount).onEach { commonState ->
                 _pointsStateFlow.emit(commonState)
             }.launchIn(viewModelScope)
         }

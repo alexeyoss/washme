@@ -1,7 +1,7 @@
 package com.example.washme.di
 
-import com.example.washme.data.MainRepositoryImpl
-import com.example.washme.domain.MainRepository
+import com.example.washme.data.PointRepositoryImpl
+import com.example.washme.domain.PointRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -13,5 +13,5 @@ import dagger.hilt.components.SingletonComponent
 interface RepositoryModule {
 
     @Binds
-    fun bindMainRepository(impl: MainRepositoryImpl): MainRepository
+    fun bindMainRepository(impl: PointRepositoryImpl): PointRepository
 }
