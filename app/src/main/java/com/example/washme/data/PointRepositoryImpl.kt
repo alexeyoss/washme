@@ -4,18 +4,16 @@ import com.example.washme.data.entities.WashMePoint
 import com.example.washme.data.fake_sources.MapObjectsFactory
 import com.example.washme.domain.PointRepository
 import com.example.washme.utils.safeCall
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class PointRepositoryImpl
-@Inject
-constructor(
+@Inject constructor(
     private val pointStore: PointStore,
     private val mapObjectsFactory: MapObjectsFactory
 ) : PointRepository {
 
     override suspend fun generateRandomPoints(amount: Int): List<WashMePoint> {
-        return mapObjectsFactory.generateRandomPoints(amount)
+        return mapObjectsFactory.generateRandomPoints(amount) // TODO switch to remote point provider
 
     }
 
@@ -25,7 +23,7 @@ constructor(
         }
     }
 
-    override suspend fun getAllMapPoints(): List<WashMePoint> {
+    override suspend fun getAllMapPointsFromDb(): List<WashMePoint> {
         return pointStore.getAllMapPoints()
     }
 

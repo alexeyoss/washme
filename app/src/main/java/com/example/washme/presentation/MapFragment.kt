@@ -1,23 +1,18 @@
 package com.example.washme.presentation
 
-import android.Manifest
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.washme.R
 import com.example.washme.data.entities.WashMePoint
 import com.example.washme.databinding.FragmentMapBinding
 import com.example.washme.utils.ConstHolder
-import com.example.washme.utils.ConstHolder.REQUEST_CODE_LOCATION_PERMISSION
 import com.example.washme.utils.Locations
-import com.example.washme.utils.TrackingUtility
 import com.example.washme.utils.collectOnLifecycle
-import com.google.android.material.snackbar.Snackbar
-import com.vmadalin.easypermissions.EasyPermissions
-import com.vmadalin.easypermissions.dialogs.SettingsDialog
 import com.yandex.mapkit.Animation
 import com.yandex.mapkit.MapKitFactory
 import com.yandex.mapkit.geometry.Point
@@ -27,7 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class MapFragment : Fragment(R.layout.fragment_map), EasyPermissions.PermissionCallbacks {
+class MapFragment : Fragment(R.layout.fragment_map) {
 
     private var binding: FragmentMapBinding? = null
     private val viewModel: MapFragmentViewModelImpl by viewModels()
@@ -50,23 +45,25 @@ class MapFragment : Fragment(R.layout.fragment_map), EasyPermissions.PermissionC
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        if (savedInstanceState != null) {
-            restoreCameraState()
-        } else {
-            initMapSettings()
-        }
+//        if (savedInstanceState != null) {
+//            restoreCameraState()
+//        } else {
+//            initMapSettings()
+//        }
+        val result = requireArguments().getParcelable<MainActivity.CustomPoint>(ARG_KEY)!!
+        initMapSettings(Point(result.latitude, result.longitude))
 
         initListeners()
-        checkPermissionsAndRenderLocationButton()
+//        checkPermissionsAndRenderLocationButton()
     }
 
-    private fun initMapSettings() {
+    private fun initMapSettings(point: Point) {
         val binding = checkNotNull(binding)
         with(binding) {
             mapView.map.move(
-                PreconfiguredCameraPosition(
-                    Locations.DefaultCoordination.getPoint(),
-                ), Animation(Animation.Type.SMOOTH, 3f), startCameraCallback
+                PreconfiguredCameraPositionAnimation(point),
+                Animation(Animation.Type.SMOOTH, 3f),
+                startCameraCallback
             )
 
             mapView.map.mapObjects
@@ -77,7 +74,7 @@ class MapFragment : Fragment(R.layout.fragment_map), EasyPermissions.PermissionC
         val binding = checkNotNull(binding)
         with(binding) {
             mapView.map.move(
-                PreconfiguredCameraPosition(
+                PreconfiguredCameraPositionAnimation(
                     Locations.UserCoordination(
                         Point(
                             0.0, 0.0
@@ -95,13 +92,9 @@ class MapFragment : Fragment(R.layout.fragment_map), EasyPermissions.PermissionC
             viewModel.pointsStateFlow.collectOnLifecycle(this@MapFragment) { commonState ->
                 when (commonState) {
                     is CommonStates.Success<*> -> {
+                        // TODO get rid of DOWNCASTING
                         (commonState.data as List<WashMePoint>).forEach { washMePoint ->
-                            mapView.map.mapObjects.addPlacemark(
-                                Point(
-                                    washMePoint.latitude,
-                                    washMePoint.longitude
-                                )
-                            )
+                            mapView.map.mapObjects.addPlacemark(washMePoint.getOnlyCoordination())
                         }
                     }
                     is CommonStates.Loading -> Unit
@@ -110,40 +103,12 @@ class MapFragment : Fragment(R.layout.fragment_map), EasyPermissions.PermissionC
                 }
             }
 
-            locationCursor.setOnClickListener {
-                requestPermissions()
+            fab.setOnClickListener {
+
             }
         }
     }
 
-    private fun checkPermissionsAndRenderLocationButton() {
-        val binding = checkNotNull(binding)
-        if (TrackingUtility.hasLocationPermissions(requireContext())) {
-            binding.locationCursor.isSelected = true
-        }
-    }
-
-    private fun requestPermissions() {
-        val binding = checkNotNull(binding)
-        if (TrackingUtility.hasLocationPermissions(requireContext())) {
-            // TODO Bug with rendering location button
-            binding.locationCursor.isSelected = true
-            Snackbar.make(
-                requireActivity().findViewById(android.R.id.content),
-                "Permissions provided",
-                Snackbar.LENGTH_LONG
-            ).show()
-        } else {
-            EasyPermissions.requestPermissions(
-                this,
-                getString(R.string.perm_rational_text),
-                REQUEST_CODE_LOCATION_PERMISSION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-
-        }
-    }
 
     override fun onStart() {
         super.onStart()
@@ -163,41 +128,28 @@ class MapFragment : Fragment(R.layout.fragment_map), EasyPermissions.PermissionC
     override fun onDestroyView() {
         super.onDestroyView()
         val binding = checkNotNull(binding)
-        binding.locationCursor.setOnClickListener(null)
+        binding.fab.setOnClickListener(null)
         this.binding = null
     }
 
-    override fun onPermissionsGranted(requestCode: Int, perms: List<String>) {
-        val binding = checkNotNull(binding)
-        if (EasyPermissions.somePermissionPermanentlyDenied(this, perms)) {
-            SettingsDialog.Builder(requireContext()).build().show()
-            binding.locationCursor.isSelected = true
-        } else {
-            requestPermissions()
-        }
-    }
-
-    override fun onPermissionsDenied(requestCode: Int, perms: List<String>) {}
-
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
-    ) {
-        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this)
-    }
-
-
-    private class PreconfiguredCameraPosition(
+    internal class PreconfiguredCameraPositionAnimation(
         target: Point, zoom: Float = 9.0f, azimuth: Float = 0.0f, tilt: Float = 0.0f
     ) : CameraPosition(target, zoom, azimuth, tilt)
 
+    // TODO handling savedInstanceState
     private data class RestoreData(
-        val lastLocation: Point,
-        val lastMapZoom: Float,
-        val mapPointId: Int?
+        val lastLocation: Point, val lastMapZoom: Float, val mapPointId: Int?
     )
-}
 
 
-fun com.yandex.mapkit.map.Map.addPlaceMark() {
+    companion object {
+        @JvmStatic
+        val ARG_KEY = "ARG_KEY"
 
+        fun newInstance(location: MainActivity.CustomPoint): MapFragment {
+            return MapFragment().apply {
+                arguments = bundleOf(Pair(ARG_KEY, location))
+            }
+        }
+    }
 }

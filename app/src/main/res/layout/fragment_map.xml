@@ -11,17 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <ImageButton
-        android:id="@+id/location_cursor"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/medium_margin"
         android:layout_marginBottom="@dimen/medium_margin"
-        android:contentDescription="@string/location_icon_text"
-        android:padding="@dimen/extra_small_padding"
-        android:background="@drawable/location_cursor_selector"
+        android:src="@drawable/fab_location_selector"
+        app:backgroundTint="@color/white"
+        app:borderWidth="0dp"
+        app:elevation="12dp"
+        app:fabSize="normal"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:tint="@null"
+        android:contentDescription="@string/fab_desc" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"

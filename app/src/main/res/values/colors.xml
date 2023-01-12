@@ -10,4 +10,6 @@
 
     <!--Custom colours-->
     <color name="main_color">#008290</color>
+    <color name="grey0.3">#000000</color>
+
 </resources>

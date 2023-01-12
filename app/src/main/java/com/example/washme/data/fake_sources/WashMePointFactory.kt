@@ -6,6 +6,7 @@ import com.example.washme.utils.ConstHolder.DEFAULT_MAX_LONGITUDE
 import com.example.washme.utils.ConstHolder.DEFAULT_MIN_LATITUDE
 import com.example.washme.utils.ConstHolder.DEFAULT_MIN_LONGITUDE
 import timber.log.Timber
+import kotlin.math.roundToInt
 import kotlin.random.Random
 
 /** [MapObjectsFactory] randomly provided the fake car wash points on the map */
@@ -13,13 +14,15 @@ import kotlin.random.Random
 class MapObjectsFactory {
     fun generateRandomPoints(amount: Int): List<WashMePoint> {
         return mutableListOf<WashMePoint>().apply {
+            val idIterator = getRandomID(amount).iterator()
             repeat(amount) {
                 add(
                     WashMePoint(
+                        id = idIterator.nextInt().toLong(),
                         latitude = getRandomLatitude(),
                         longitude = getRandomLongitude(),
-                        name = "Washing machines ${getRandomLatitude()}",
-                        address = "Baker street ${getRandomLatitude()}",
+                        name = "Washing machines ${getRandomLatitude().roundToInt()}",
+                        address = "Baker street ${getRandomLatitude().roundToInt()}",
                     )
                 )
             }
@@ -27,6 +30,7 @@ class MapObjectsFactory {
     }
 }
 
+private fun getRandomID(maxAmount: Int): IntRange = (1..maxAmount + 1)
 
 private fun getRandomLatitude(
     min: Float = DEFAULT_MIN_LATITUDE, max: Float = DEFAULT_MAX_LATITUDE

@@ -3,11 +3,6 @@
 
     <!--Map fragment -->
     <string name="perm_rational_text">You need to accept location permissions to determinate your location</string>
-    <string name="location_icon_text">Location icon</string>
-    <!--WashMeSettingsDialog-->
-    <string name="rationale_ask_again">
-        This app may not work correctly without the requested permissions.
-        Open the app settings screen to modify app permissions.
-    </string>
+    <string name="fab_desc">Location point button</string>
     <string name="title_settings_dialog">Permissions Required</string>
 </resources>

@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Singleton
 
 @Module
@@ -14,7 +15,10 @@ object UseCasesModule {
 
     @Singleton
     @Provides
-    fun provideGenerateAndSavePointUseCase(pointRepository: PointRepository): GenerateAndSavePointUseCase {
-        return GenerateAndSavePointUseCase(pointRepository)
+    fun provideGenerateAndSavePointUseCase(
+        pointRepository: PointRepository,
+        @CoroutinesModule.IoDispatcher ioDispatcher: CoroutineDispatcher
+    ): GenerateAndSavePointUseCase {
+        return GenerateAndSavePointUseCase(pointRepository, ioDispatcher)
     }
 }

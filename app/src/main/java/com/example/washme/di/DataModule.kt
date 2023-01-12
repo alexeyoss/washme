@@ -6,11 +6,13 @@ import com.example.washme.data.PointDao
 import com.example.washme.data.PointStore
 import com.example.washme.data.WashMeDB
 import com.example.washme.data.fake_sources.MapObjectsFactory
+import com.example.washme.utils.LocationLiveData
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Singleton
 
 @Module
@@ -46,6 +48,15 @@ object DataModule {
     @Singleton
     @Provides
     fun providePointStore(
-        pointDao: PointDao
-    ): PointStore = PointStore(pointDao)
+        pointDao: PointDao,
+        @CoroutinesModule.IoDispatcher
+        ioDispatcher: CoroutineDispatcher
+    ): PointStore = PointStore(pointDao, ioDispatcher)
+
+
+    @Singleton
+    @Provides
+    fun provideLocationLiveData(
+        @ApplicationContext applicationContext: Context
+    ): LocationLiveData = LocationLiveData(applicationContext)
 }

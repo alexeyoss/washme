@@ -2,27 +2,23 @@ package com.example.washme.data.entities
 
 import android.os.Parcelable
 import androidx.room.*
+import com.yandex.mapkit.geometry.Point
 import kotlinx.parcelize.Parcelize
 import javax.annotation.concurrent.Immutable
 
 @Entity(
-    tableName = "points",
-    indices = [
-        Index("phone", unique = true)
-    ],
-    foreignKeys = [
-        ForeignKey(
-            entity = Schedule::class,
-            parentColumns = ["id"],
-            childColumns = ["schedule_id"],
-            onUpdate = ForeignKey.CASCADE,
-            onDelete = ForeignKey.CASCADE
-        )]
+    tableName = "points", indices = [Index("phone", unique = true)], foreignKeys = [ForeignKey(
+        entity = Schedule::class,
+        parentColumns = ["id"],
+        childColumns = ["schedule_id"],
+        onUpdate = ForeignKey.CASCADE,
+        onDelete = ForeignKey.CASCADE
+    )]
 )
 @Parcelize
 @Immutable
 data class WashMePoint(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Long = 0,
+    @PrimaryKey @ColumnInfo(name = "id") val id: Long,
     @ColumnInfo(name = "latitude") val latitude: Double,
     @ColumnInfo(name = "longitude") val longitude: Double,
     @ColumnInfo(name = "name") val name: String,
@@ -36,4 +32,8 @@ data class WashMePoint(
     @ColumnInfo(name = "country_code") val countryCode: Int? = null,
     @ColumnInfo(name = "phone") val phone: Int? = null,
     @ColumnInfo(name = "website") val website: String? = null,
-) : Parcelable
+) : Parcelable {
+    fun getOnlyCoordination(): Point {
+        return Point(latitude, longitude)
+    }
+}

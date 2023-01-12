@@ -95,6 +95,4 @@ dependencies {
     implementation "androidx.startup:startup-runtime:$startUp_runtime_version"
     // Timber
     implementation "com.jakewharton.timber:timber:$timber_version"
-    // Easy permissions
-    implementation "com.vmadalin:easypermissions-ktx:$easyPerm_version"
 }
