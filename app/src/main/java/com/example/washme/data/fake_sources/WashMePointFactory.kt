@@ -1,28 +1,25 @@
 package com.example.washme.data.fake_sources
 
+import com.example.washme.data.entities.UserLocation
 import com.example.washme.data.entities.WashMePoint
-import com.example.washme.utils.ConstHolder.DEFAULT_MAX_LATITUDE
-import com.example.washme.utils.ConstHolder.DEFAULT_MAX_LONGITUDE
-import com.example.washme.utils.ConstHolder.DEFAULT_MIN_LATITUDE
-import com.example.washme.utils.ConstHolder.DEFAULT_MIN_LONGITUDE
 import timber.log.Timber
-import kotlin.math.roundToInt
 import kotlin.random.Random
 
 /** [MapObjectsFactory] randomly provided the fake car wash points on the map */
 
 class MapObjectsFactory {
-    fun generateRandomPoints(amount: Int): List<WashMePoint> {
+    fun generateRandomPoints(amount: Int, location: UserLocation): List<WashMePoint> {
         return mutableListOf<WashMePoint>().apply {
             val idIterator = getRandomID(amount).iterator()
+
             repeat(amount) {
                 add(
                     WashMePoint(
                         id = idIterator.nextInt().toLong(),
-                        latitude = getRandomLatitude(),
-                        longitude = getRandomLongitude(),
-                        name = "Washing machines ${getRandomLatitude().roundToInt()}",
-                        address = "Baker street ${getRandomLatitude().roundToInt()}",
+                        latitude = getRandomLatitude(location),
+                        longitude = getRandomLongitude(location),
+                        name = "Washing machines ${Random.nextInt(0, 50)}",
+                        address = "Baker street ${Random.nextInt(0, 50)}}",
                     )
                 )
             }
@@ -30,19 +27,24 @@ class MapObjectsFactory {
     }
 }
 
+const val DIFF = 0.05
 private fun getRandomID(maxAmount: Int): IntRange = (1..maxAmount + 1)
 
 private fun getRandomLatitude(
-    min: Float = DEFAULT_MIN_LATITUDE, max: Float = DEFAULT_MAX_LATITUDE
+    location: UserLocation
 ): Double {
+    val min = location.latitude - DIFF
+    val max = location.latitude + DIFF
     require(min < max) { Timber.i("Invalid range of LATITUDE [$min, $max]") }
-    return min + Random.nextDouble() * (max - min)
+    return Random.nextDouble(min, max)
 }
 
 private fun getRandomLongitude(
-    min: Float = DEFAULT_MIN_LONGITUDE, max: Float = DEFAULT_MAX_LONGITUDE
+    location: UserLocation
 ): Double {
+    val min = location.longitude - DIFF
+    val max = location.longitude + DIFF
     require(min < max) { Timber.i("Invalid range of LONGITUDE $min, $max]") }
-    return min + Random.nextDouble() * (max - min)
+    return Random.nextDouble(min, max)
 }
 

@@ -1,10 +1,10 @@
 package com.example.washme.data.repository
 
 import com.example.washme.data.PointStore
+import com.example.washme.data.entities.UserLocation
 import com.example.washme.data.entities.WashMePoint
 import com.example.washme.data.fake_sources.MapObjectsFactory
 import com.example.washme.domain.repository.PointRepository
-import com.example.washme.utils.safeCall
 import javax.inject.Inject
 
 class PointRepositoryImpl
@@ -13,15 +13,15 @@ class PointRepositoryImpl
     private val mapObjectsFactory: MapObjectsFactory
 ) : PointRepository {
 
-    override suspend fun generateRandomPoints(amount: Int): List<WashMePoint> {
-        return mapObjectsFactory.generateRandomPoints(amount) // TODO switch to remote point provider
-
+    override suspend fun generateRandomPoints(
+        amount: Int,
+        location: UserLocation
+    ): List<WashMePoint> {
+        return mapObjectsFactory.generateRandomPoints(amount, location)
     }
 
     override suspend fun savePointIntoDb(entities: List<WashMePoint>) {
-        safeCall {
-            pointStore.addAllPoints(entities)
-        }
+        pointStore.addAllPoints(entities)
     }
 
     override suspend fun getAllMapPointsFromDb(): List<WashMePoint> {

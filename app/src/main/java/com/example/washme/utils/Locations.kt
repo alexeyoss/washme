@@ -1,18 +1,14 @@
 package com.example.washme.utils
 
-import com.yandex.mapkit.geometry.Point
+import com.example.washme.data.entities.UserLocation
 
 sealed interface Locations {
-    object DefaultCoordination {
-        private val point: Point = DEFAULT_POINT_COORDINATION
-        fun getPoint() = point
-    }
-
-    data class UserCoordination(private val point: Point) {
-        fun getPoint() = point
-    }
-
     companion object {
-        private val DEFAULT_POINT_COORDINATION = Point(55.751999, 37.617734)
+        private const val MOSCOW_LATITUDE = 55.751999
+        private const val MOSCOW_LONGITUDE = 37.617734
+
+        @JvmStatic
+        val DEFAULT_POINT_COORDINATION =
+            UserLocation(latitude = MOSCOW_LATITUDE, longitude = MOSCOW_LONGITUDE)
     }
 }

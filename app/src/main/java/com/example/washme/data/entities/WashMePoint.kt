@@ -37,7 +37,7 @@ data class WashMePoint(
     companion object {
         fun WashMePoint.toYandexPoint(): Point = Point(
             this.latitude,
-            this.latitude
+            this.longitude
         )
     }
 }

@@ -1,10 +1,11 @@
 package com.example.washme.presentation
 
+import com.example.washme.data.entities.UserLocation
 import kotlinx.coroutines.flow.StateFlow
 
 interface MapFragmentViewModel {
 
     val pointsStateFlow: StateFlow<CommonStates>
-    fun getStartRandomPoints(amount: Int)
+    fun getStartRandomPoints(amount: Int, location: UserLocation)
 
 }

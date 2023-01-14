@@ -3,6 +3,7 @@ package com.example.washme.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.washme.data.entities.UserLocation
 import com.example.washme.di.CoroutinesModule
 import com.example.washme.domain.use_cases.GenerateAndSavePointUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,9 +26,9 @@ class MapFragmentViewModelImpl
     private val _pointsStateFlow = MutableStateFlow<CommonStates>(CommonStates.Empty)
     override val pointsStateFlow = _pointsStateFlow.asStateFlow()
 
-    override fun getStartRandomPoints(amount: Int) {
+    override fun getStartRandomPoints(amount: Int, location: UserLocation) {
         viewModelScope.launch(ioDispatcher) {
-            generateAndSavePointUseCase.invoke(amount).onEach { commonState ->
+            generateAndSavePointUseCase.invoke(amount, location).onEach { commonState ->
                 _pointsStateFlow.emit(commonState)
             }.launchIn(viewModelScope)
         }

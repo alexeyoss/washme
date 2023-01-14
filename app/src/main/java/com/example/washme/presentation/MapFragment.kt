@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.washme.R
 import com.example.washme.data.entities.UserLocation
+import com.example.washme.data.entities.UserLocation.Companion.toYandexPoint
 import com.example.washme.data.entities.WashMePoint
 import com.example.washme.data.entities.WashMePoint.Companion.toYandexPoint
 import com.example.washme.databinding.FragmentMapBinding
@@ -30,7 +31,11 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     private val viewModel: MapFragmentViewModelImpl by viewModels()
 
     private val startCameraCallback by lazy(LazyThreadSafetyMode.NONE) {
-        CameraCallback { viewModel.getStartRandomPoints(ConstHolder.DEFAULT_AMOUNT_OF_POINTS) }
+        CameraCallback {
+            viewModel.getStartRandomPoints(
+                ConstHolder.DEFAULT_AMOUNT_OF_POINTS, requireArguments().getParcelable(ARG_KEY)!!
+            )
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,13 +52,17 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        if (savedInstanceState != null) {
-//            restoreCameraState()
-//        } else {
-//            initMapSettings()
-//        }
-        val result = requireArguments().getParcelable<UserLocation>(ARG_KEY)!!
-        initMapSettings(Point(result.latitude, result.longitude))
+        if (savedInstanceState == null) {
+            val userLocation = requireArguments().getParcelable<UserLocation>(ARG_KEY)
+            initMapSettings(
+                userLocation?.toYandexPoint()
+                    ?: Locations.DEFAULT_POINT_COORDINATION.toYandexPoint()
+            )
+
+        } else {
+            restoreCameraState()
+        }
+
 
         initListeners()
 //        checkPermissionsAndRenderLocationButton()
@@ -63,7 +72,6 @@ class MapFragment : Fragment(R.layout.fragment_map) {
         val binding = checkNotNull(binding)
 
         with(binding) {
-
             mapView.map.isRotateGesturesEnabled = false
             mapView.map.move(
                 PreconfiguredCameraPositionAnimation(point),
@@ -80,11 +88,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
         with(binding) {
             mapView.map.move(
                 PreconfiguredCameraPositionAnimation(
-                    Locations.UserCoordination(
-                        Point(
-                            0.0, 0.0
-                        )
-                    ).getPoint(),
+                    zoom = 0.0f, target = Locations.DEFAULT_POINT_COORDINATION.toYandexPoint()
                 )
             )
         }
@@ -99,9 +103,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
                     is CommonStates.Success<*> -> {
                         // TODO get rid of DOWNCASTING
                         (commonState.data as List<WashMePoint>).forEach { washMePoint ->
-                            mapView.map.mapObjects.addPlacemark(
-                                washMePoint.toYandexPoint()
-                            )
+                            mapView.map.mapObjects.addPlacemark(washMePoint.toYandexPoint())
                         }
                     }
                     is CommonStates.Loading -> Unit
@@ -142,11 +144,6 @@ class MapFragment : Fragment(R.layout.fragment_map) {
     internal class PreconfiguredCameraPositionAnimation(
         target: Point, zoom: Float = 9.0f, azimuth: Float = 0.0f, tilt: Float = 0.0f
     ) : CameraPosition(target, zoom, azimuth, tilt)
-
-    // TODO handling savedInstanceState
-    private data class RestoreData(
-        val lastLocation: Point, val lastMapZoom: Float, val mapPointId: Int?
-    )
 
 
     companion object {

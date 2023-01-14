@@ -21,8 +21,8 @@ import com.google.android.gms.location.LocationRequest as LocationRequestDepreca
 // TODO refactor
 class LocationLiveData
 @Inject constructor(
-    @ApplicationContext
-    private val context: Context, private val userLocationMapper: UserLocationMapper
+    @ApplicationContext private val context: Context,
+    private val userLocationMapper: UserLocationMapper,
 ) : LiveData<UserLocation>() {
 
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
@@ -88,9 +88,8 @@ class LocationLiveData
     }
 
     private fun setLocationData(location: Location?) {
-        location?.let { location ->
-            value = userLocationMapper.mapToModel(location)
-        }
+        checkNotNull(location)
+        value = userLocationMapper.mapToModel(location)
     }
 
 
@@ -101,7 +100,7 @@ class LocationLiveData
         val locationRequest = LocationRequestDeprecatedVersion.create().apply {
             interval = FIFTEEN_MINUTES
             fastestInterval = FIFTEEN_MINUTES / 2
-            priority = Priority.PRIORITY_BALANCED_POWER_ACCURACY
+            priority = Priority.PRIORITY_HIGH_ACCURACY
         }
     }
 }

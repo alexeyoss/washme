@@ -25,5 +25,6 @@ object AppModule {
     fun provideLocationLiveData(
         @ApplicationContext applicationContext: Context,
         userLocationMapper: UserLocationMapper
-    ): LocationLiveData = LocationLiveData(applicationContext, userLocationMapper)
+    ): LocationLiveData =
+        LocationLiveData(applicationContext, userLocationMapper)
 }

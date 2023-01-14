@@ -5,10 +5,12 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.example.washme.ApplicationViewModelImpl
 import com.example.washme.R
 import com.example.washme.data.entities.UserLocation
 import com.example.washme.databinding.ActivityMainBinding
+import com.example.washme.utils.Locations
 import com.example.washme.utils.observeOnce
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,8 +26,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private val locationPermissionsLauncher = registerForActivityResult(
-        RequestMultiplePermissions(),
-        ::onPermissionsResult
+        RequestMultiplePermissions(), ::onPermissionsResult
     )
 
 
@@ -41,9 +42,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private fun initListeners() {
         // TODO test observeOnce functionality
-        applicationViewModel.locationLiveData.observe(this) { location ->
+        applicationViewModel.locationLiveData.observeOnce(this) { location ->
             lastUserLocation = location
             launchScreen()
+
+            applicationViewModel.saveLocationIntoDB()
         }
 
     }
@@ -51,34 +54,35 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     private fun onPermissionsResult(grantResult: Map<String, Boolean>) {
         if (grantResult.all { it.value }) {
             initListeners()
-            applicationViewModel.startLocationUpdates() // Change to intent
+            applicationViewModel.startLocationUpdates()
         } else {
-            launchLocationPermissionsLauncher()
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    this, Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                launchLocationPermissionsLauncher()
+            } else {
+                launchScreen()
+            }
         }
     }
+
 
     private fun launchLocationPermissionsLauncher() {
         locationPermissionsLauncher.launch(
             arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
+                Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
             )
         )
     }
 
     private fun launchScreen() {
         // TODO put args via navigation component
-        supportFragmentManager.beginTransaction()
-            .replace(
-                R.id.dataContainer,
-                MapFragment.newInstance(
-                    lastUserLocation ?: UserLocation(
-                        latitude = 0.0,
-                        longitude = 0.0,
-                        createdAt = null
-                    )
-                )
-            ).commit()
+        supportFragmentManager.beginTransaction().replace(
+            R.id.dataContainer, MapFragment.newInstance(
+                lastUserLocation ?: Locations.DEFAULT_POINT_COORDINATION
+            )
+        ).commit()
     }
 
     override fun onDestroy() {

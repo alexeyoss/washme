@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.yandex.mapkit.geometry.Point
 import kotlinx.parcelize.Parcelize
 import javax.annotation.concurrent.Immutable
 
@@ -16,5 +17,9 @@ data class UserLocation(
     @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") val id: Long = 0,
     @ColumnInfo(name = "latitude") var latitude: Double,
     @ColumnInfo(name = "longitude") var longitude: Double,
-    @ColumnInfo(name = "createdAt") var createdAt: Long?
-) : Parcelable
+    @ColumnInfo(name = "createdAt") var createdAt: Long? = null
+) : Parcelable {
+    companion object {
+        fun UserLocation.toYandexPoint(): Point = Point(this.latitude, this.longitude)
+    }
+}
