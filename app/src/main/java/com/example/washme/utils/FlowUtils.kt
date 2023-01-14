@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
+import kotlin.properties.ReadWriteProperty
+import kotlin.reflect.KProperty
 
 suspend fun <T> safeCall(
     block: suspend () -> T
@@ -69,5 +71,17 @@ fun <T> Flow<T>.collectOnLifecycle(
     collector: (T) -> Unit
 ) {
     collectOnLifecycle(lifecycleOwner, Lifecycle.State.RESUMED, collector)
+}
+
+
+class DelegateExample : ReadWriteProperty<Int, String> {
+
+    override fun getValue(thisRef: Int, property: KProperty<*>): String {
+        TODO("Not yet implemented")
+    }
+
+    override fun setValue(thisRef: Int, property: KProperty<*>, value: String) {
+
+    }
 }
 

@@ -8,7 +8,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.washme.R
+import com.example.washme.data.entities.UserLocation
 import com.example.washme.data.entities.WashMePoint
+import com.example.washme.data.entities.WashMePoint.Companion.toYandexPoint
 import com.example.washme.databinding.FragmentMapBinding
 import com.example.washme.utils.ConstHolder
 import com.example.washme.utils.Locations
@@ -50,7 +52,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
 //        } else {
 //            initMapSettings()
 //        }
-        val result = requireArguments().getParcelable<MainActivity.CustomPoint>(ARG_KEY)!!
+        val result = requireArguments().getParcelable<UserLocation>(ARG_KEY)!!
         initMapSettings(Point(result.latitude, result.longitude))
 
         initListeners()
@@ -59,14 +61,17 @@ class MapFragment : Fragment(R.layout.fragment_map) {
 
     private fun initMapSettings(point: Point) {
         val binding = checkNotNull(binding)
+
         with(binding) {
+
+            mapView.map.isRotateGesturesEnabled = false
             mapView.map.move(
                 PreconfiguredCameraPositionAnimation(point),
                 Animation(Animation.Type.SMOOTH, 3f),
                 startCameraCallback
             )
 
-            mapView.map.mapObjects
+
         }
     }
 
@@ -94,7 +99,9 @@ class MapFragment : Fragment(R.layout.fragment_map) {
                     is CommonStates.Success<*> -> {
                         // TODO get rid of DOWNCASTING
                         (commonState.data as List<WashMePoint>).forEach { washMePoint ->
-                            mapView.map.mapObjects.addPlacemark(washMePoint.getOnlyCoordination())
+                            mapView.map.mapObjects.addPlacemark(
+                                washMePoint.toYandexPoint()
+                            )
                         }
                     }
                     is CommonStates.Loading -> Unit
@@ -104,7 +111,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
             }
 
             fab.setOnClickListener {
-
+                ProfileBottomSheetDialogFragment().show(parentFragmentManager, "")
             }
         }
     }
@@ -146,7 +153,7 @@ class MapFragment : Fragment(R.layout.fragment_map) {
         @JvmStatic
         val ARG_KEY = "ARG_KEY"
 
-        fun newInstance(location: MainActivity.CustomPoint): MapFragment {
+        fun newInstance(location: UserLocation): MapFragment {
             return MapFragment().apply {
                 arguments = bundleOf(Pair(ARG_KEY, location))
             }

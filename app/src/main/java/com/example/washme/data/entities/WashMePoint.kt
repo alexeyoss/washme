@@ -33,7 +33,11 @@ data class WashMePoint(
     @ColumnInfo(name = "phone") val phone: Int? = null,
     @ColumnInfo(name = "website") val website: String? = null,
 ) : Parcelable {
-    fun getOnlyCoordination(): Point {
-        return Point(latitude, longitude)
+
+    companion object {
+        fun WashMePoint.toYandexPoint(): Point = Point(
+            this.latitude,
+            this.latitude
+        )
     }
 }

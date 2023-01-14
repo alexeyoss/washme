@@ -1,8 +1,9 @@
-package com.example.washme.data
+package com.example.washme.data.repository
 
+import com.example.washme.data.PointStore
 import com.example.washme.data.entities.WashMePoint
 import com.example.washme.data.fake_sources.MapObjectsFactory
-import com.example.washme.domain.PointRepository
+import com.example.washme.domain.repository.PointRepository
 import com.example.washme.utils.safeCall
 import javax.inject.Inject
 

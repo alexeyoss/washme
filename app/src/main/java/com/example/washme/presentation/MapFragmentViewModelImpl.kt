@@ -4,7 +4,7 @@ package com.example.washme.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.washme.di.CoroutinesModule
-import com.example.washme.domain.GenerateAndSavePointUseCase
+import com.example.washme.domain.use_cases.GenerateAndSavePointUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow

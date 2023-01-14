@@ -1,4 +1,4 @@
-package com.example.washme.domain
+package com.example.washme.domain.repository
 
 import com.example.washme.data.entities.WashMePoint
 

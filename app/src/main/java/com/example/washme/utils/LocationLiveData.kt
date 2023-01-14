@@ -7,19 +7,36 @@ import android.location.Location
 import android.os.Looper
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.LiveData
+import com.example.washme.data.entities.UserLocation
+import com.example.washme.data.mappers.UserLocationMapper
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
-import com.yandex.mapkit.geometry.Point
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 import com.google.android.gms.location.LocationRequest as LocationRequestDeprecatedVersion
 
+
+// TODO refactor
 class LocationLiveData
-@Inject
-constructor(val context: Context) : LiveData<Point>() {
+@Inject constructor(
+    @ApplicationContext
+    private val context: Context, private val userLocationMapper: UserLocationMapper
+) : LiveData<UserLocation>() {
 
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+
+    private val locationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult) {
+            super.onLocationResult(locationResult)
+            locationResult ?: Unit
+            locationResult.locations.forEach { location ->
+                setLocationData(location)
+            }
+        }
+    }
+
 
     override fun onActive() {
         super.onActive()
@@ -30,7 +47,6 @@ constructor(val context: Context) : LiveData<Point>() {
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
             //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
             //                                          int[] grantResults)
@@ -47,11 +63,9 @@ constructor(val context: Context) : LiveData<Point>() {
 
     fun startLocationUpdate() {
         if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_FINE_LOCATION
+                context, Manifest.permission.ACCESS_FINE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_COARSE_LOCATION
+                context, Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             // TODO: Consider calling
@@ -64,16 +78,8 @@ constructor(val context: Context) : LiveData<Point>() {
             return
         }
         fusedLocationClient.requestLocationUpdates(
-            locationRequest,
-            locationCallback,
-            Looper.getMainLooper()
+            locationRequest, locationCallback, Looper.getMainLooper()
         )
-    }
-
-    private fun setLocationData(location: Location?) {
-        location?.let { location ->
-            value = Point(location.latitude, location.longitude)
-        }
     }
 
     override fun onInactive() {
@@ -81,15 +87,12 @@ constructor(val context: Context) : LiveData<Point>() {
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 
-    private val locationCallback = object : LocationCallback() {
-        override fun onLocationResult(locationResult: LocationResult) {
-            super.onLocationResult(locationResult)
-            locationResult ?: Unit
-            locationResult.locations.forEach { location ->
-                setLocationData(location)
-            }
+    private fun setLocationData(location: Location?) {
+        location?.let { location ->
+            value = userLocationMapper.mapToModel(location)
         }
     }
+
 
     companion object {
         /** Declare updates every 15 minutes*/

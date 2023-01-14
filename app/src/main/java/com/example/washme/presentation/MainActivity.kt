@@ -2,22 +2,22 @@ package com.example.washme.presentation
 
 import android.Manifest
 import android.os.Bundle
-import android.os.Parcelable
 import androidx.activity.result.contract.ActivityResultContracts.RequestMultiplePermissions
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.example.washme.ApplicationViewModel
+import com.example.washme.ApplicationViewModelImpl
 import com.example.washme.R
+import com.example.washme.data.entities.UserLocation
 import com.example.washme.databinding.ActivityMainBinding
-
+import com.example.washme.utils.observeOnce
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.parcelize.Parcelize
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    private val applicationViewModel: ApplicationViewModel by viewModels()
+    private val applicationViewModel: ApplicationViewModelImpl by viewModels()
+    private var lastUserLocation: UserLocation? = null
 
     private val binding: ActivityMainBinding by lazy(LazyThreadSafetyMode.NONE) {
         ActivityMainBinding.inflate(layoutInflater)
@@ -40,24 +40,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun initListeners() {
+        // TODO test observeOnce functionality
         applicationViewModel.locationLiveData.observe(this) { location ->
-            checkNotNull(location)
-            supportFragmentManager.beginTransaction()
-                .replace(
-                    R.id.dataContainer,
-                    MapFragment.newInstance(
-                        CustomPoint(location.longitude, location.latitude)
-                    )
-                ).commit()
-            // TODO put args via navigation component
+            lastUserLocation = location
+            launchScreen()
         }
+
     }
 
     private fun onPermissionsResult(grantResult: Map<String, Boolean>) {
         if (grantResult.all { it.value }) {
-            applicationViewModel.startLocationUpdates()
-
             initListeners()
+            applicationViewModel.startLocationUpdates() // Change to intent
         } else {
             launchLocationPermissionsLauncher()
         }
@@ -72,16 +66,23 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         )
     }
 
+    private fun launchScreen() {
+        // TODO put args via navigation component
+        supportFragmentManager.beginTransaction()
+            .replace(
+                R.id.dataContainer,
+                MapFragment.newInstance(
+                    lastUserLocation ?: UserLocation(
+                        latitude = 0.0,
+                        longitude = 0.0,
+                        createdAt = null
+                    )
+                )
+            ).commit()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         locationPermissionsLauncher.unregister()
     }
-
-    @Parcelize
-    data class CustomPoint(
-        val longitude: Double,
-        val latitude: Double,
-    ) : Parcelable
-
-
 }

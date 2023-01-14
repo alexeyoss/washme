@@ -1,6 +1,7 @@
-package com.example.washme.domain
+package com.example.washme.domain.use_cases
 
 import com.example.washme.di.CoroutinesModule
+import com.example.washme.domain.repository.PointRepository
 import com.example.washme.presentation.CommonStates
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
