@@ -8,6 +8,7 @@ import com.yandex.mapkit.MapKitFactory
 class YandexMapInitializer : Initializer<Unit> {
     override fun create(context: Context) {
         MapKitFactory.setApiKey(BuildConfig.MAP_API_KEY)
+        MapKitFactory.initialize(context)
     }
 
     override fun dependencies(): List<Class<out Initializer<*>>> = emptyList()

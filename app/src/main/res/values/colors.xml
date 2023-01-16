@@ -9,7 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <!--Custom colours-->
+    <color name="grey">#78868E</color>
+    <color name="light_grey">#F3F4F4</color>
+    <color name="bg_grey">#DFE6EA</color>
     <color name="main_color">#008290</color>
-    <color name="grey0.3">#000000</color>
 
 </resources>

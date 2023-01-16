@@ -1,6 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="@dimen/medium_padding"
+    android:paddingVertical="@dimen/small_padding">
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/carwash_name"
+        style="@style/subtitle_text_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:maxLines="1"
+        android:text="@string/default_carwash_name_text"
+        app:layout_constraintEnd_toStartOf="@+id/carwash_status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ic_map_mini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:src="@drawable/ic_map_mini"
+        app:layout_constraintBottom_toBottomOf="@+id/carwash_address"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/carwash_name" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/carwash_address"
+        style="@style/body_text_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/extra_small_margin"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:layout_marginBottom="@dimen/extra_small_margin"
+        android:maxLines="1"
+        android:text="@string/default_carwash_address_text"
+        app:layout_constraintBottom_toTopOf="@+id/distance_to_carwash"
+
+        app:layout_constraintEnd_toStartOf="@+id/carwash_status"
+        app:layout_constraintStart_toEndOf="@id/ic_map_mini"
+        app:layout_constraintTop_toBottomOf="@+id/carwash_name" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ic_direction__arrow_mini"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_direction_arrow_mini"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/distance_to_carwash"
+        style="@style/body_text_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/extra_small_margin"
+        android:layout_marginEnd="@dimen/small_margin"
+        android:maxLines="1"
+        android:text="@string/default_carwash_destination_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/carwash_status"
+        app:layout_constraintStart_toEndOf="@+id/ic_direction__arrow_mini" />
+
+    <ImageView
+        android:id="@+id/carwash_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_open_status"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

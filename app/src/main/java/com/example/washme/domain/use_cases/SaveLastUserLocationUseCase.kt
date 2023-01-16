@@ -13,7 +13,7 @@ class SaveLastUserLocationUseCase
     @CoroutinesModule.IoDispatcher private val ioDispatcher: CoroutineDispatcher
 ) {
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        Timber.e("Saving user location was failed - $throwable")
+        Timber.e("Saving user location process was failed - $throwable")
     }
     private val scope = CoroutineScope(ioDispatcher + SupervisorJob() + exceptionHandler)
 

@@ -88,18 +88,18 @@ class LocationLiveData
     }
 
     private fun setLocationData(location: Location?) {
-        checkNotNull(location)
-        value = userLocationMapper.mapToModel(location)
+        location?.let {
+            value = userLocationMapper.mapToModel(location)
+        }
+
     }
 
 
     companion object {
         /** Declare updates every 15 minutes*/
-        @JvmStatic
-        val FIFTEEN_MINUTES: Long = 900000
         val locationRequest = LocationRequestDeprecatedVersion.create().apply {
-            interval = FIFTEEN_MINUTES
-            fastestInterval = FIFTEEN_MINUTES / 2
+            interval = ConstHolder.FIFTEEN_MINUTES
+            fastestInterval = ConstHolder.FIFTEEN_MINUTES / 2
             priority = Priority.PRIORITY_HIGH_ACCURACY
         }
     }

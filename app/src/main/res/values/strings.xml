@@ -1,10 +1,28 @@
 <resources>
+    <!--Common -->
     <string name="app_name">WashMe</string>
+    <string name="title_settings_dialog">Permissions Required</string>
+    <string name="perm_rational_text">You need to accept location permissions to determinate your location</string>
 
     <!--Map fragment -->
-    <string name="perm_rational_text">You need to accept location permissions to determinate your location</string>
-    <string name="fab_desc">Location point button</string>
-    <string name="title_settings_dialog">Permissions Required</string>
+    <string name="location_fab_desc">Floating action button</string>
+    <string name="zoom_in_fab_desc">Zoom in fab</string>
+    <string name="zoom_out_fab_desc">Zoom out fab</string>
+
+    <!-- Profile fragment-->
+    <string name="default_photo_picture_desc">Default photo picture</string>
+
+    <!-- Favorites fragment-->
+    <string name="default_carwash_name_text">Car wash #1</string>
+    <string name="default_carwash_address_text">Moscow, Lenina district 32 </string>
+    <string name="default_carwash_destination_text">5 km from you - 35 min.</string>
+
+    <!--Navigation component-->
+    <string name="nav_favorites_label">Favorites</string>
+    <string name="nav_map_label">Map</string>
+    <string name="nav_profile_label">Profile</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
 </resources>

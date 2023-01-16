@@ -16,11 +16,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MapFragmentViewModelImpl
+class MainActivityViewModelImpl
 @Inject constructor(
     @CoroutinesModule.IoDispatcher private val ioDispatcher: CoroutineDispatcher,
     private val generateAndSavePointUseCase: GenerateAndSavePointUseCase
-) : ViewModel(), MapFragmentViewModel {
+) : ViewModel(), MainActivityViewModel {
     // TODO save the map state while view rendering
 
     private val _pointsStateFlow = MutableStateFlow<CommonStates>(CommonStates.Empty)

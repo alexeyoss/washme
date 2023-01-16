@@ -32,12 +32,12 @@ data class WashMePoint(
     @ColumnInfo(name = "country_code") val countryCode: Int? = null,
     @ColumnInfo(name = "phone") val phone: Int? = null,
     @ColumnInfo(name = "website") val website: String? = null,
+//    @ColumnInfo(name = "updated_at") val updatedAt: String? = null, // TODO when implement job scheduling
 ) : Parcelable {
 
     companion object {
         fun WashMePoint.toYandexPoint(): Point = Point(
-            this.latitude,
-            this.longitude
+            this.latitude, this.longitude
         )
     }
 }

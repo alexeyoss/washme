@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--    -->
+    <!--Header style-->
+    <style name="subtitle_text_style" parent="Widget.AppCompat.TextView">
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/header_text_size</item>
+        <item name="fontFamily">"@font/cc_montserrat_semibold"</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+    <!--Body style-->
+    <style name="body_text_style" parent="Widget.AppCompat.TextView">
+        <item name="android:letterSpacing">0.0</item>
+        <item name="android:textColor">@color/grey</item>
+        <item name="android:textSize">@dimen/header_text_size</item>
+        <item name="fontFamily">"@font/cc_montserrat_regular"</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="maxLines">2</item>
+    </style>
+    <!--Map floating action button style-->
+    <style name="map_fab_normal" parent="Widget.Design.FloatingActionButton">
+        <item name="borderWidth">0dp</item>
+        <item name="elevation">12dp</item>
+        <item name="fabSize">normal</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="tint">@null</item>
+    </style>
 </resources>
