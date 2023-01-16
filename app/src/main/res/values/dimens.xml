@@ -14,4 +14,7 @@
     <dimen name="medium_padding">16dp</dimen>
     <dimen name="large_padding">24dp</dimen>
     <dimen name="extra_large_padding">32dp</dimen>
+
+    <!---->
+    <dimen name="title_text_size">14sp</dimen>
 </resources>
